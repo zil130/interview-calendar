@@ -1,13 +1,30 @@
-body {
+@import-normalize;
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&display=swap');
+
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  /* Typography */
+  --family: 'Instrument Sans', sans-serif;
+  --fs-sm: 14px;
+  --fs-md: 16px;
+  --fs-lg: 24px;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  /* Colors */
+  --text-black: #3B4045;
+  --text-red: red;
+  --bg-white: white;
+  --bg-smoke: whitesmoke;
+}
+
+body {
+  font-family: var(--family);
+  color: var(--text-black);
+  font-weight: var(--fw-regular);
+  background-color: var(--bg-white);
 }
