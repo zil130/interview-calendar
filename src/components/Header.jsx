@@ -1,13 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  background-color: var(--bg-white);
-`;
+import Wrapper from './Wrapper';
+import Button from './Button';
 
 const Title = styled.h1`
   font-size: var(--fs-lg);
@@ -15,20 +9,11 @@ const Title = styled.h1`
   letter-spacing: -1px;
 `;
 
-const Button = styled.button`
-  font-size: 56px;
-  border: 0;
-  background: transparent;
-  color: var(--text-red);
-  outline: none;
-  cursor: pointer;
-`;
-
 function Header() {
   return (
     <Wrapper>
       <Title>Interview Calendar</Title>
-      <Button>+</Button>
+      <Button fontSize="var(--fs-pm)">+</Button>
     </Wrapper>
   );
 }
