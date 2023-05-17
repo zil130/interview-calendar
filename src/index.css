@@ -1,5 +1,5 @@
 @import-normalize;
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans&display=swap');
 
 * {
   box-sizing: border-box;
@@ -11,13 +11,12 @@
   /* Typography */
   --family: 'Instrument Sans', sans-serif;
   --fs-sm: 14px;
-  --fs-md: 16px;
-  --fs-lg: 24px;
-  --fw-regular: 400;
-  --fw-medium: 500;
+  --fs-md: 24px;
+  --fs-lg: 36px;
+  --fw-regular: 100;
   /* Colors */
   --text-black: #3B4045;
-  --text-red: red;
+  --text-red: #FF0000;
   --bg-white: white;
   --bg-smoke: whitesmoke;
 }
