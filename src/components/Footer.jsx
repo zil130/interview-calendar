@@ -4,7 +4,7 @@ import Button from './Button';
 
 function Footer() {
   return (
-    <Wrapper>
+    <Wrapper bgColor="var(--bg-smoke)">
       <Button>Today</Button>
     </Wrapper>
   );
