@@ -5,7 +5,7 @@ const StyledButton = styled.button`
   font-size: ${(props) => props.fontSize || 'var(--fs-md)'};
   border: 0;
   background: transparent;
-  color: var(--text-red);
+  color: ${(props) => props.color || 'var(--text-red)'};
   outline: none;
   cursor: pointer;
 `;
