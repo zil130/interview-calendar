@@ -8,14 +8,12 @@
 }
 
 :root {
-  /* Typography */
   --family: 'Instrument Sans', sans-serif;
   --fs-sm: 20px;
   --fs-md: 24px;
   --fs-lg: 36px;
   --fs-pm: 48px;
   --fw-regular: 100;
-  /* Colors */
   --text-black: #3B4045;
   --text-red: #FF0000;
   --bg-white: white;
@@ -27,5 +25,5 @@ body {
   font-size: var(--fs-sm);
   color: var(--text-black);
   font-weight: var(--fw-regular);
-  background-color: var(--bg-white);
+  background: var(--bg-white);
 }

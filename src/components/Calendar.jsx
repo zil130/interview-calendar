@@ -9,6 +9,7 @@ const year = 2019;
 
 const Container = styled.div`
   display: grid;
+  grid-template-columns: repeat(8, 1fr);
   grid-template-areas:
     ". weekday weekday weekday weekday weekday weekday weekday"
     ". day-of-month day-of-month day-of-month day-of-month day-of-month day-of-month day-of-month"

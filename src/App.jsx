@@ -1,8 +1,9 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import Calendar from './components/Calendar';
+import WeekByHours from './components/WeekByHours';
+import Footer from './components/Footer';
 
 const AppContainer = styled.div`
   display: grid;
@@ -19,7 +20,7 @@ function App() {
     <AppContainer>
       <Header />
       <Calendar />
-      <div />
+      <WeekByHours />
       <Footer />
     </AppContainer>
   );
