@@ -24,6 +24,12 @@ const Time = styled.span`
   margin: -11px 11px 0 0;
   color: var(--text-grey);
   text-align: right;
+  @media (max-width: 570px) {
+    font-size: 18px;
+  }
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
 `;
 
 function GridGenerator() {
@@ -71,6 +77,7 @@ function WeekByHours() {
       <Wrapper
         display="block"
         padding="20px 0 0"
+        paddingLessThan570="20px 0 0"
       >
         <GridGenerator />
       </Wrapper>

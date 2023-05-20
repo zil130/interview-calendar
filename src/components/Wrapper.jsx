@@ -8,6 +8,9 @@ const StyledWrapper = styled.div`
   padding: ${(props) => props.padding || '20px 50px'};
   background-color: ${(props) => props.background || 'var(--bg-white)'};
   border-top: ${(props) => props.bordertop || '0'};
+  @media (max-width: 570px) {
+    padding: ${(props) => props.paddingLessThan570 || '20px 20px'};
+  }
 `;
 
 function Wrapper(props) {
