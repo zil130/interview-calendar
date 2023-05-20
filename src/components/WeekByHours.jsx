@@ -19,6 +19,13 @@ const Row = styled.div`
   display: flex;
 `;
 
+const Time = styled.span`
+  display: block;
+  margin: -11px 11px 0 0;
+  color: var(--text-grey);
+  text-align: right;
+`;
+
 function GridGenerator() {
   const grid = [];
   const rows = 24;
@@ -47,18 +54,12 @@ function GridGenerator() {
 
       rowCells.push(
         <Cell key={`${row}-${col}`} style={{ borderRight, borderBottom }}>
-          {(!col && row)
-            ? <p style={{ margin: '-11px 11px 0 0', textAlign: 'right' }}>{incrementTime()}</p>
-            : ''}
+          {(!col && row) ? <Time>{incrementTime()}</Time> : ''}
         </Cell>,
       );
     }
 
-    grid.push(
-      <Row key={row}>
-        {rowCells}
-      </Row>,
-    );
+    grid.push(<Row key={row}>{rowCells}</Row>);
   }
 
   return grid;

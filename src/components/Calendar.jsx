@@ -39,9 +39,8 @@ const DaysOfMonth = styled(Weekdays)`
   grid-area: day-of-month;
 `;
 
-const DayOfMonth = styled(Button)`
-  width: 100%;
-  height: 100%;
+const DayOfMonth = styled(Weekday)`
+  font-size: var(--fs-md);
 `;
 
 const MonthYear = styled(Weekdays)`
@@ -66,7 +65,7 @@ function Calendar() {
       </Weekdays>
       <DaysOfMonth>
         {
-          daysOfMonth.map((dayOfMonth) => <DayOfMonth key={dayOfMonth} color="var(--text-black)">{dayOfMonth}</DayOfMonth>)
+          daysOfMonth.map((dayOfMonth) => <DayOfMonth key={dayOfMonth}>{dayOfMonth}</DayOfMonth>)
         }
       </DaysOfMonth>
       <ButtonPrev fontSize="var(--fs-pm)">&lsaquo;</ButtonPrev>
