@@ -9,7 +9,7 @@ const StyledWrapper = styled.div`
   background-color: ${(props) => props.background || 'var(--bg-white)'};
   border-top: ${(props) => props.bordertop || '0'};
   @media (max-width: 570px) {
-    padding: ${(props) => props.paddingLessThan570 || '20px 20px'};
+    padding: ${(props) => props.paddinglessthan570 || '20px 20px'};
   }
 `;
 

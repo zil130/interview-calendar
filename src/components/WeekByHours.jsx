@@ -77,7 +77,7 @@ function WeekByHours() {
       <Wrapper
         display="block"
         padding="20px 0 0"
-        paddingLessThan570="20px 0 0"
+        paddinglessthan570="20px 0 0"
       >
         <GridGenerator />
       </Wrapper>

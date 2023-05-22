@@ -1,11 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import { useSelector } from 'react-redux';
 import Button from './Button';
-
-const weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-const daysOfMonth = [25, 26, 27, 28, 29, 30, 31];
-const month = 'March';
-const year = 2019;
 
 const Container = styled.div`
   display: grid;
@@ -56,20 +52,49 @@ const ButtonNext = styled(Button)`
 `;
 
 function Calendar() {
+  function getWeekDates(date) {
+    const dayOfWeek = new Date(date).getDay();
+    const monday = new Date(date);
+    monday.setDate(new Date(date).getDate() - dayOfWeek + 1);
+    const weekDates = [];
+
+    for (let i = 0; i < 7; i += 1) {
+      const currentDate = new Date(monday);
+      currentDate.setDate(monday.getDate() + i);
+      weekDates.push(currentDate);
+    }
+
+    return weekDates;
+  }
+
+  const activeDay = useSelector((state) => state.activeDay);
+  const weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+  const daysOfMonth = getWeekDates(activeDay)
+    .map((date) => ({ date: date.toDateString(), dayOfMonth: date.getDate() }));
+  const monthYear = `${activeDay.toLocaleString('en-US', { month: 'long' })} ${activeDay.getFullYear()}`;
+
   return (
     <Container>
       <Weekdays>
         {
-          weekdays.map((weekday) => <Weekday key={weekday}>{weekday[0].toUpperCase()}</Weekday>)
+          weekdays.map((weekday) => (
+            <Weekday key={weekday}>
+              {weekday[0].toUpperCase()}
+            </Weekday>
+          ))
         }
       </Weekdays>
       <DaysOfMonth>
         {
-          daysOfMonth.map((dayOfMonth) => <DayOfMonth key={dayOfMonth}>{dayOfMonth}</DayOfMonth>)
+          daysOfMonth.map(({ date, dayOfMonth }) => (
+            <DayOfMonth key={date}>
+              {dayOfMonth}
+            </DayOfMonth>
+          ))
         }
       </DaysOfMonth>
       <ButtonPrev fontSize="var(--fs-pm)">&lsaquo;</ButtonPrev>
-      <MonthYear>{`${month} ${year}`}</MonthYear>
+      <MonthYear>{monthYear}</MonthYear>
       <ButtonNext fontSize="var(--fs-pm)">&rsaquo;</ButtonNext>
     </Container>
   );
