@@ -55,7 +55,7 @@ const ButtonNext = styled(Button)`
 function Calendar() {
   const weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
   const activeDay = useSelector((state) => state.visibleWeek.activeDay);
-  const daysOfMonth = useSelector((state) => state.visibleWeek.daysOfMonth);
+  const daysOfMonth = useSelector((state) => state.visibleWeek.activeDay.week);
   const monthYear = `${activeDay.month} ${activeDay.year}`;
   const dispatch = useDispatch();
 
