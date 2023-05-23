@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import activeDayReducer from './activeDaySlice';
+import visibleWeekReducer from './visibleWeekSlice';
 
 export default configureStore({
   reducer: {
-    activeDay: activeDayReducer,
+    visibleWeek: visibleWeekReducer,
   },
 });

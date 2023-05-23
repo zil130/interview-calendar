@@ -1,7 +1,8 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from './Button';
+import { plusSevenDays, minusSevenDays } from '../slices/visibleWeekSlice';
 
 const Container = styled.div`
   display: grid;
@@ -52,26 +53,11 @@ const ButtonNext = styled(Button)`
 `;
 
 function Calendar() {
-  function getWeekDates(date) {
-    const dayOfWeek = new Date(date).getDay();
-    const monday = new Date(date);
-    monday.setDate(new Date(date).getDate() - dayOfWeek + 1);
-    const weekDates = [];
-
-    for (let i = 0; i < 7; i += 1) {
-      const currentDate = new Date(monday);
-      currentDate.setDate(monday.getDate() + i);
-      weekDates.push(currentDate);
-    }
-
-    return weekDates;
-  }
-
-  const activeDay = useSelector((state) => state.activeDay);
   const weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-  const daysOfMonth = getWeekDates(activeDay)
-    .map((date) => ({ date: date.toDateString(), dayOfMonth: date.getDate() }));
-  const monthYear = `${activeDay.toLocaleString('en-US', { month: 'long' })} ${activeDay.getFullYear()}`;
+  const activeDay = useSelector((state) => state.visibleWeek.activeDay);
+  const daysOfMonth = useSelector((state) => state.visibleWeek.daysOfMonth);
+  const monthYear = `${activeDay.month} ${activeDay.year}`;
+  const dispatch = useDispatch();
 
   return (
     <Container>
@@ -93,9 +79,19 @@ function Calendar() {
           ))
         }
       </DaysOfMonth>
-      <ButtonPrev fontSize="var(--fs-pm)">&lsaquo;</ButtonPrev>
+      <ButtonPrev
+        fontSize="var(--fs-pm)"
+        onClick={() => dispatch(minusSevenDays())}
+      >
+        &lsaquo;
+      </ButtonPrev>
       <MonthYear>{monthYear}</MonthYear>
-      <ButtonNext fontSize="var(--fs-pm)">&rsaquo;</ButtonNext>
+      <ButtonNext
+        fontSize="var(--fs-pm)"
+        onClick={() => dispatch(plusSevenDays())}
+      >
+        &rsaquo;
+      </ButtonNext>
     </Container>
   );
 }
