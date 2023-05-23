@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const getAactiveDay = (date) => ({
+const getActiveDay = (date) => ({
   day: date.toDateString(),
   month: date.toLocaleString('en-US', { month: 'long' }),
   year: date.getFullYear(),
@@ -24,7 +24,7 @@ const getWeekDates = (date) => {
 const date = new Date();
 
 const initialState = {
-  activeDay: getAactiveDay(date),
+  activeDay: getActiveDay(date),
   daysOfMonth: getWeekDates(date),
 };
 
@@ -38,7 +38,7 @@ const visibleWeek = createSlice({
 
       return {
         ...state,
-        activeDay: getAactiveDay(newDate),
+        activeDay: getActiveDay(newDate),
         daysOfMonth: getWeekDates(newDate),
       };
     },
@@ -49,7 +49,7 @@ const visibleWeek = createSlice({
 
       return {
         ...state,
-        activeDay: getAactiveDay(newDate),
+        activeDay: getActiveDay(newDate),
         daysOfMonth: getWeekDates(newDate),
       };
     },
