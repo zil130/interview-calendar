@@ -16,13 +16,13 @@ const getWeekDates = (date) => {
 };
 
 const getActiveDay = (date) => ({
-  day: date.toDateString(),
-  month: date.toLocaleString('en-US', { month: 'long' }),
-  year: date.getFullYear(),
+  day: date,
+  month: new Date(date).toLocaleString('en-US', { month: 'long' }),
+  year: new Date(date).getFullYear(),
   week: getWeekDates(date),
 });
 
-const date = new Date();
+const date = new Date().toDateString();
 
 const initialState = { activeDay: getActiveDay(date) };
 
@@ -35,7 +35,7 @@ const visibleWeek = createSlice({
       newDate.setDate(newDate.getDate() + 7);
 
       return {
-        activeDay: getActiveDay(newDate),
+        activeDay: getActiveDay(newDate.toDateString()),
       };
     },
 
@@ -44,7 +44,7 @@ const visibleWeek = createSlice({
       newDate.setDate(newDate.getDate() - 7);
 
       return {
-        activeDay: getActiveDay(newDate),
+        activeDay: getActiveDay(newDate.toDateString()),
       };
     },
 

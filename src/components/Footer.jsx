@@ -13,7 +13,7 @@ function Footer() {
       bordertop="2px solid lightgrey"
     >
       <Button
-        onClick={() => dispatch(today(new Date()))}
+        onClick={() => dispatch(today(new Date().toDateString()))}
       >
         Today
       </Button>
