@@ -47,10 +47,16 @@ const visibleWeek = createSlice({
         activeDay: getActiveDay(newDate),
       };
     },
+
+    today: (state, action) => ({
+      ...state,
+      activeDay: getActiveDay(action.payload),
+    }),
   },
 });
 
 export const { plusSevenDays } = visibleWeek.actions;
 export const { minusSevenDays } = visibleWeek.actions;
+export const { today } = visibleWeek.actions;
 
 export default visibleWeek.reducer;
