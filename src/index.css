@@ -14,11 +14,13 @@
   --fs-lg: 36px;
   --fs-pm: 48px;
   --fw-regular: 100;
-  --text-black: #3B4045;
-  --text-red: #FF0000;
-  --text-grey: lightgrey;
-  --bg-white: white;
-  --bg-smoke: whitesmoke;
+  --text-black: #030303;
+  --text-red: #ff3131;
+  --text-grey: #cacaca;
+  --bg-white: #ffffff;
+  --bg-grey: #f6f6f6;
+  --bg-slot-book: #ebecff;
+  --border-grey: #e6e6e6;
 }
 
 body {

@@ -12,7 +12,7 @@ const AppContainer = styled.div`
   max-width: 740px;
   height: 100vh;
   margin: 0 auto;
-  background: var(--bg-smoke);
+  background: var(--bg-grey);
 `;
 
 function App() {

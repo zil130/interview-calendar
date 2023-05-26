@@ -11,9 +11,9 @@ const Container = styled.div`
     ". weekday weekday weekday weekday weekday weekday weekday"
     ". day-of-month day-of-month day-of-month day-of-month day-of-month day-of-month day-of-month"
     ". prev month-year month-year month-year month-year month-year next";
-  background: var(--bg-smoke);
-  border-top: 2px solid lightgrey;
-  border-bottom: 2px solid lightgrey;
+  background: var(--bg-grey);
+  border-top: 2px solid var(--border-grey);
+  border-bottom: 2px solid var(--border-grey);
 `;
 
 const Weekdays = styled.div`

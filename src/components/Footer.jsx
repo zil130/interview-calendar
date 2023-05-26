@@ -9,8 +9,8 @@ function Footer() {
 
   return (
     <Wrapper
-      background="var(--bg-smoke)"
-      bordertop="2px solid lightgrey"
+      background="var(--bg-grey)"
+      bordertop="2px solid var(--border-grey)"
     >
       <Button
         onClick={() => dispatch(today(new Date().toDateString()))}

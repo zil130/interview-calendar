@@ -22,9 +22,22 @@ const getActiveDay = (date) => ({
   week: getWeekDates(date),
 });
 
+const setTimeslots = () => {
+  const result = {};
+
+  for (let i = 0; i < 24; i += 1) {
+    result[i] = [];
+  }
+
+  return result;
+};
+
 const date = new Date().toDateString();
 
-const initialState = { activeDay: getActiveDay(date) };
+const initialState = {
+  activeDay: getActiveDay(date),
+  timeslots: setTimeslots(),
+};
 
 const visibleWeek = createSlice({
   name: 'visibleWeek',
@@ -35,6 +48,7 @@ const visibleWeek = createSlice({
       newDate.setDate(newDate.getDate() + 7);
 
       return {
+        ...state,
         activeDay: getActiveDay(newDate.toDateString()),
       };
     },
@@ -44,6 +58,7 @@ const visibleWeek = createSlice({
       newDate.setDate(newDate.getDate() - 7);
 
       return {
+        ...state,
         activeDay: getActiveDay(newDate.toDateString()),
       };
     },
@@ -52,11 +67,40 @@ const visibleWeek = createSlice({
       ...state,
       activeDay: getActiveDay(action.payload),
     }),
+
+    addEventTime: (state) => {
+      const eventTime = prompt('Enter event time: YYYY-MM-DD HH:mm:ss');
+
+      if (new Date(Date.parse(eventTime)).toDateString() === 'Invalid Date') {
+        alert('Invalid event time');
+        return state;
+      }
+
+      const timeslotDate = new Date(eventTime).toString();
+      const hourOfNewSlot = timeslotDate.slice(16, 18);
+      const dateOfNewSlot = timeslotDate.slice(0, 15);
+
+      if (state.timeslots[hourOfNewSlot].includes(dateOfNewSlot)) {
+        alert('This slot is already booked. Choose another');
+        return state;
+      }
+
+      return {
+        ...state,
+        timeslots: {
+          ...state.timeslots,
+          [hourOfNewSlot]: [
+            ...state.timeslots[hourOfNewSlot],
+            dateOfNewSlot,
+          ],
+        },
+      };
+    },
   },
 });
 
-export const { plusSevenDays } = visibleWeek.actions;
-export const { minusSevenDays } = visibleWeek.actions;
-export const { today } = visibleWeek.actions;
+export const {
+  plusSevenDays, minusSevenDays, today, addEventTime,
+} = visibleWeek.actions;
 
 export default visibleWeek.reducer;
