@@ -17,9 +17,11 @@
   --text-black: #030303;
   --text-red: #ff3131;
   --text-grey: #cacaca;
+  --text-white: #ffffff;
   --bg-white: #ffffff;
   --bg-grey: #f6f6f6;
   --bg-slot-book: #ebecff;
+  --bg-red: #ff3131;
   --border-grey: #e6e6e6;
 }
 

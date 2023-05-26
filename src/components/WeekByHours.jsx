@@ -22,7 +22,7 @@ const Cell = styled.div`
 const InnerCell = styled.div`
   width: calc(100% - 4px);
   height: calc(100% - 4px);
-  background: ${(props) => props.$background};
+  background: ${(props) => props.background};
 `;
 
 const Row = styled.div`
@@ -82,7 +82,7 @@ function GridGenerator() {
         >
           {(!col && row)
             ? <Time>{timeSlot}</Time>
-            : <InnerCell $background={background} />}
+            : <InnerCell background={background} />}
         </Cell>,
       );
     }

@@ -37,7 +37,21 @@ const DaysOfMonth = styled(Weekdays)`
 `;
 
 const DayOfMonth = styled(Weekday)`
+  position: relative;
+  margin: 15px 0;
   font-size: var(--fs-md);
+`;
+
+const Circle = styled.span`
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: ${(props) => (props.circlesolid ? 'var(--bg-red)' : 'transparent')};
+  border: ${(props) => (props.circleborder ? '2px solid var(--bg-red)' : 'none')};
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  color: ${(props) => (props.circlesolid ? 'var(--text-white)' : 'var(--text-black)')}; 
 `;
 
 const MonthYear = styled(Weekdays)`
@@ -74,7 +88,20 @@ function Calendar() {
         {
           daysOfMonth.map(({ date, dayOfMonth }) => (
             <DayOfMonth key={date}>
-              {dayOfMonth}
+              <Circle
+                circlesolid={
+                  (date === activeDay.day && new Date().toDateString() === date)
+                    ? true.toString()
+                    : undefined
+                }
+                circleborder={
+                  (date === activeDay.day && new Date().toDateString() !== date)
+                    ? true.toString()
+                    : undefined
+                }
+              >
+                {dayOfMonth}
+              </Circle>
             </DayOfMonth>
           ))
         }
