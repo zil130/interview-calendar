@@ -12,8 +12,17 @@ const StyledWeekByHours = styled.div`
 `;
 
 const Cell = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: calc(100% / 8);
   height: 50px;
+`;
+
+const InnerCell = styled.div`
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background: ${(props) => props.$background};
 `;
 
 const Row = styled.div`
@@ -22,9 +31,11 @@ const Row = styled.div`
 
 const Time = styled.span`
   display: block;
-  margin: -11px 11px 0 0;
+  width: 100%;
+  height: 100%;
   color: var(--text-grey);
   text-align: right;
+  margin: -22px 11px 0 0;
   @media (max-width: 570px) {
     font-size: 18px;
   }
@@ -67,9 +78,11 @@ function GridGenerator() {
       rowCells.push(
         <Cell
           key={timeSlot}
-          style={{ borderRight, borderBottom, background }}
+          style={{ borderRight, borderBottom }}
         >
-          {(!col && row) ? <Time>{timeSlot}</Time> : ''}
+          {(!col && row)
+            ? <Time>{timeSlot}</Time>
+            : <InnerCell $background={background} />}
         </Cell>,
       );
     }
