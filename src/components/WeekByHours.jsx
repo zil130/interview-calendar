@@ -1,7 +1,8 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Wrapper from './Wrapper';
+import { toggleSlotForDelete } from '../slices/visibleWeekSlice';
 
 const StyledWeekByHours = styled.div`
   background: var(--bg-white);
@@ -20,9 +21,10 @@ const Cell = styled.div`
 `;
 
 const InnerCell = styled.div`
-  width: calc(100% - 4px);
-  height: calc(100% - 4px);
+  width: calc(100% - 5px);
+  height: calc(100% - 5px);
   background: ${(props) => props.background};
+  cursor: pointer;
 `;
 
 const Row = styled.div`
@@ -47,6 +49,8 @@ const Time = styled.span`
 function GridGenerator() {
   const week = useSelector((state) => state.visibleWeek.activeDay.week.map(({ date }) => date));
   const hoursBooked = useSelector((state) => state.visibleWeek.timeslots);
+  const hoursDel = useSelector((state) => state.visibleWeek.forDelete);
+  const dispatch = useDispatch();
 
   const grid = [];
   const rows = 24;
@@ -72,17 +76,24 @@ function GridGenerator() {
     for (let col = 0; col < columns; col += 1) {
       const borderRight = (col !== 0 && col !== 7) ? '2px solid var(--border-grey)' : 'none';
       const borderBottom = (col !== 0 && row !== 23) ? '2px solid var(--border-grey)' : 'none';
-      const background = (hoursBooked[row].includes(week[col - 1])) ? 'var(--bg-slot-book)' : 'transparent';
+      const background = (hoursDel[row].includes(week[col - 1])) ? 'var(--bg-slot-del)' : 'var(--bg-slot-book)';
       const timeSlot = (!col && row) ? incrementTime() : `${row}-${week[col - 1]}`;
+
+      const inner = (hoursBooked[row].includes(week[col - 1]))
+        ? (
+          <InnerCell
+            background={background}
+            onClick={() => dispatch(toggleSlotForDelete([row, week[col - 1]]))}
+          />
+        )
+        : undefined;
 
       rowCells.push(
         <Cell
           key={timeSlot}
           style={{ borderRight, borderBottom }}
         >
-          {(!col && row)
-            ? <Time>{timeSlot}</Time>
-            : <InnerCell background={background} />}
+          {(!col && row) ? <Time>{timeSlot}</Time> : inner}
         </Cell>,
       );
     }

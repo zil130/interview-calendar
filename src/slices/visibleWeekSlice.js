@@ -1,15 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const getWeekDates = (date) => {
-  const dayOfWeek = new Date(date).getDay();
-  const monday = new Date(date);
-  monday.setDate(new Date(date).getDate() - dayOfWeek + 1);
+const getWeekDates = (dateString) => {
+  const date = new Date(dateString);
+  const monday = new Date(date.getTime());
+  monday.setDate(date.getDate() - ((date.getDay() + 6) % 7));
   const weekDates = [];
 
   for (let i = 0; i < 7; i += 1) {
-    const newDate = new Date(monday);
-    newDate.setDate(monday.getDate() + i);
-    weekDates.push({ date: newDate.toDateString(), dayOfMonth: newDate.getDate() });
+    const currentDay = new Date(monday.getTime());
+    currentDay.setDate(monday.getDate() + i);
+    const formattedDate = currentDay.toDateString();
+    const dayOfMonth = currentDay.getDate();
+    weekDates.push({ date: formattedDate, dayOfMonth });
   }
 
   return weekDates;
@@ -37,6 +39,7 @@ const date = new Date().toDateString();
 const initialState = {
   activeDay: getActiveDay(date),
   timeslots: setTimeslots(),
+  forDelete: setTimeslots(),
 };
 
 const visibleWeek = createSlice({
@@ -96,11 +99,47 @@ const visibleWeek = createSlice({
         },
       };
     },
+
+    toggleSlotForDelete: (state, action) => {
+      const [hour, day] = action.payload;
+      const res = state.forDelete[hour].includes(day)
+        ? state.forDelete[hour].filter((item) => item !== day)
+        : [...state.forDelete[hour], day];
+
+      return {
+        ...state,
+        forDelete: {
+          ...state.forDelete,
+          [hour]: res,
+        },
+      };
+    },
+
+    deleteSlots: (state) => {
+      const obj1 = { ...state.timeslots };
+      const obj2 = { ...state.forDelete };
+
+      const newTimeslots = Object.keys(obj1).reduce((acc, key) => {
+        const values1 = obj1[key];
+        const values2 = obj2[key];
+
+        return {
+          ...acc,
+          [key]: values1.filter((value) => !values2.includes(value)),
+        };
+      }, {});
+
+      return {
+        ...state,
+        forDelete: setTimeslots(),
+        timeslots: newTimeslots,
+      };
+    },
   },
 });
 
 export const {
-  plusSevenDays, minusSevenDays, today, addEventTime,
+  plusSevenDays, minusSevenDays, today, addEventTime, toggleSlotForDelete, deleteSlots,
 } = visibleWeek.actions;
 
 export default visibleWeek.reducer;

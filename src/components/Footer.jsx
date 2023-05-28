@@ -1,10 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Wrapper from './Wrapper';
 import Button from './Button';
-import { today } from '../slices/visibleWeekSlice';
+import { today, deleteSlots } from '../slices/visibleWeekSlice';
 
 function Footer() {
+  const forDelete = useSelector((state) => state.visibleWeek.forDelete);
   const dispatch = useDispatch();
 
   return (
@@ -17,6 +18,9 @@ function Footer() {
       >
         Today
       </Button>
+      {Object.values(forDelete).flat().length
+        ? <Button onClick={() => dispatch(deleteSlots())}>Delete</Button>
+        : undefined}
     </Wrapper>
   );
 }
