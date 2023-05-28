@@ -6,7 +6,7 @@ const StyledWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: ${(props) => props.padding || '20px 50px'};
-  background-color: ${(props) => props.background || 'var(--bg-white)'};
+  background-color: ${(props) => props.background || 'var(--white)'};
   border-top: ${(props) => props.bordertop || '0'};
   @media (max-width: 570px) {
     padding: ${(props) => props.paddinglessthan570 || '20px 20px'};

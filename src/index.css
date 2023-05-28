@@ -14,22 +14,20 @@
   --fs-lg: 36px;
   --fs-pm: 48px;
   --fw-regular: 100;
-  --text-black: #030303;
-  --text-red: #ff3131;
+  --black: #030303;
+  --white: #ffffff;
+  --red: #ff3131;
   --text-grey: #cacaca;
-  --text-white: #ffffff;
-  --bg-white: #ffffff;
   --bg-grey: #f6f6f6;
-  --bg-slot-book: #ebecff;
-  --bg-slot-del: #b3b7ff;
-  --bg-red: #ff3131;
   --border-grey: #e6e6e6;
+  --bg-slot-booked: #ebecff;
+  --bg-slot-selected: #b3b7ff;
 }
 
 body {
   font-family: var(--family);
   font-size: var(--fs-sm);
-  color: var(--text-black);
+  color: var(--black);
   font-weight: var(--fw-regular);
-  background: var(--bg-white);
+  background: var(--white);
 }

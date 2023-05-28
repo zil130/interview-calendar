@@ -46,12 +46,12 @@ const Circle = styled.span`
   position: absolute;
   width: 50px;
   height: 50px;
-  background: ${(props) => (props.circlesolid ? 'var(--bg-red)' : 'transparent')};
-  border: ${(props) => (props.circleborder ? '2px solid var(--bg-red)' : 'none')};
+  background: ${(props) => (props.circlesolid ? 'var(--red)' : 'transparent')};
+  border: ${(props) => (props.circleborder ? '2px solid var(--red)' : 'none')};
   border-radius: 50%;
   text-align: center;
   line-height: 50px;
-  color: ${(props) => (props.circlesolid ? 'var(--text-white)' : 'var(--text-black)')}; 
+  color: ${(props) => (props.circlesolid ? 'var(--white)' : 'var(--black)')}; 
 `;
 
 const MonthYear = styled(Weekdays)`

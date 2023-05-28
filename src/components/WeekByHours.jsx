@@ -5,7 +5,7 @@ import Wrapper from './Wrapper';
 import { toggleSlotForDelete } from '../slices/visibleWeekSlice';
 
 const StyledWeekByHours = styled.div`
-  background: var(--bg-white);
+  background: var(--white);
   overflow: scroll;
   &::-webkit-scrollbar {
     width: 0;
@@ -76,7 +76,7 @@ function GridGenerator() {
     for (let col = 0; col < columns; col += 1) {
       const borderRight = (col !== 0 && col !== 7) ? '2px solid var(--border-grey)' : 'none';
       const borderBottom = (col !== 0 && row !== 23) ? '2px solid var(--border-grey)' : 'none';
-      const background = (hoursDel[row].includes(week[col - 1])) ? 'var(--bg-slot-del)' : 'var(--bg-slot-book)';
+      const background = (hoursDel[row].includes(week[col - 1])) ? 'var(--bg-slot-selected)' : 'var(--bg-slot-booked)';
       const timeSlot = (!col && row) ? incrementTime() : `${row}-${week[col - 1]}`;
 
       const inner = (hoursBooked[row].includes(week[col - 1]))
