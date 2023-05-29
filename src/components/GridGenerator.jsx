@@ -33,6 +33,7 @@ const Time = styled.span`
     font-size: 18px;
   }
   @media (max-width: 400px) {
+    margin: -18px 10px 0 0;
     font-size: 14px;
   }
 `;
