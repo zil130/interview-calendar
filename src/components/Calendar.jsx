@@ -52,6 +52,11 @@ const Circle = styled.span`
   text-align: center;
   line-height: 50px;
   color: ${(props) => (props.circlesolid ? 'var(--white)' : 'var(--black)')}; 
+  @media (max-width: 460px) {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+  }
 `;
 
 const MonthYear = styled(Weekdays)`
