@@ -5,8 +5,9 @@ const getWeekDates = (dateString) => {
   const monday = new Date(date.getTime());
   monday.setDate(date.getDate() - ((date.getDay() + 6) % 7));
   const weekDates = [];
+  const daysInWeek = 7;
 
-  for (let i = 0; i < 7; i += 1) {
+  for (let i = 0; i < daysInWeek; i += 1) {
     const currentDay = new Date(monday.getTime());
     currentDay.setDate(monday.getDate() + i);
     const formattedDate = currentDay.toDateString();
@@ -26,8 +27,9 @@ const getActiveDay = (date) => ({
 
 const setTimeslots = () => {
   const result = {};
+  const hoursInDay = 24;
 
-  for (let i = 0; i < 24; i += 1) {
+  for (let i = 0; i < hoursInDay; i += 1) {
     result[i] = [];
   }
 
@@ -48,7 +50,8 @@ const visibleWeek = createSlice({
   reducers: {
     plusSevenDays: (state) => {
       const newDate = new Date(state.activeDay.day);
-      newDate.setDate(newDate.getDate() + 7);
+      const daysInWeek = 7;
+      newDate.setDate(newDate.getDate() + daysInWeek);
 
       return {
         ...state,
@@ -58,7 +61,8 @@ const visibleWeek = createSlice({
 
     minusSevenDays: (state) => {
       const newDate = new Date(state.activeDay.day);
-      newDate.setDate(newDate.getDate() - 7);
+      const daysInWeek = 7;
+      newDate.setDate(newDate.getDate() - daysInWeek);
 
       return {
         ...state,
@@ -72,7 +76,8 @@ const visibleWeek = createSlice({
     }),
 
     addEventTime: (state) => {
-      const eventTime = prompt('Enter event time: YYYY-MM-DD HH:mm:ss');
+      const requestFormat = 'YYYY-MM-DD HH:mm:ss';
+      const eventTime = prompt(`Enter event time: ${requestFormat}`);
 
       if (!eventTime) {
         return state;
@@ -80,7 +85,7 @@ const visibleWeek = createSlice({
 
       const timeslotDate = new Date(eventTime).toString();
 
-      if (timeslotDate === 'Invalid Date' || eventTime.length !== 19) {
+      if (timeslotDate === 'Invalid Date' || eventTime.length !== requestFormat.length) {
         alert('Invalid event time');
         return state;
       }
