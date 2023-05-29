@@ -5,7 +5,7 @@ import GridGenerator from './GridGenerator';
 
 const StyledWeekByHours = styled.div`
   background: var(--white);
-  overflow: scroll;
+  overflow: auto;
   &::-webkit-scrollbar {
     width: 0;
   }
@@ -16,8 +16,8 @@ function WeekByHours() {
     <StyledWeekByHours>
       <Wrapper
         display="block"
-        padding="20px 0 0"
-        paddinglessthan570="20px 0 0"
+        padding="0"
+        paddinglessthan570="0"
       >
         <GridGenerator />
       </Wrapper>
