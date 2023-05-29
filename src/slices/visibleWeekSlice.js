@@ -30,7 +30,8 @@ const setTimeslots = () => {
   const hoursInDay = 24;
 
   for (let i = 0; i < hoursInDay; i += 1) {
-    result[i] = [];
+    const key = `${i}`.padStart(2, '0');
+    result[key] = [];
   }
 
   return result;
