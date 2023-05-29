@@ -73,18 +73,23 @@ const visibleWeek = createSlice({
 
     addEventTime: (state) => {
       const eventTime = prompt('Enter event time: YYYY-MM-DD HH:mm:ss');
+      const timeslotDate = new Date(eventTime).toString();
 
-      if (new Date(Date.parse(eventTime)).toDateString() === 'Invalid Date') {
+      if (timeslotDate === 'Invalid Date' || eventTime.length !== 19) {
         alert('Invalid event time');
         return state;
       }
 
-      const timeslotDate = new Date(eventTime).toString();
       const hourOfNewSlot = timeslotDate.slice(16, 18);
       const dateOfNewSlot = timeslotDate.slice(0, 15);
 
       if (state.timeslots[hourOfNewSlot].includes(dateOfNewSlot)) {
         alert('This slot is already booked. Choose another');
+        return state;
+      }
+
+      if (new Date() > new Date(eventTime)) {
+        alert('The desired time cannot be less than the current time. Choose another');
         return state;
       }
 
