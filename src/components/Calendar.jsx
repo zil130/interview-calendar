@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from './Button';
+import Button from './commons/Button';
 import { plusSevenDays, minusSevenDays } from '../slices/visibleWeekSlice';
 
 const Container = styled.div`

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Wrapper from './Wrapper';
-import Button from './Button';
+import Wrapper from './commons/Wrapper';
+import Button from './commons/Button';
 import { today, deleteSlots } from '../slices/visibleWeekSlice';
 
 function Footer() {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { useDispatch } from 'react-redux';
-import Wrapper from './Wrapper';
-import Button from './Button';
+import Wrapper from './commons/Wrapper';
+import Button from './commons/Button';
 import { addEventTime } from '../slices/visibleWeekSlice';
 
 const Title = styled.h1`
