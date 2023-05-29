@@ -73,6 +73,11 @@ const visibleWeek = createSlice({
 
     addEventTime: (state) => {
       const eventTime = prompt('Enter event time: YYYY-MM-DD HH:mm:ss');
+
+      if (!eventTime) {
+        return state;
+      }
+
       const timeslotDate = new Date(eventTime).toString();
 
       if (timeslotDate === 'Invalid Date' || eventTime.length !== 19) {
